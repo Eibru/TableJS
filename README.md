@@ -1,14 +1,14 @@
-#Usage
-###Initialization
+## Usage
+### Initialization
 ```javascript
 const table = new Table(table_data, document.getElementById('tableParent'));
 ```
-###Updating records
+### Updating records
 ```javascript
 table.updateRecords(array);
 ```
 
-##Table data definition
+## Table data definition
 Table data is required to initialize the table
 ```javascript
 let tableData = {
@@ -17,7 +17,7 @@ let tableData = {
     options: options
 };
 ```
-###Columns options
+### Columns options
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
@@ -26,33 +26,33 @@ tableData.columns = [
 ];
 ```
 
-####dataField
+#### dataField
 The name of the related field in the records
 
-####headerText
+#### headerText
 The text to be displayed in the header column
 
-####type
+#### type
 Describes which datatype the cell should contain
 
-####headerColClassName
+#### headerColClassName
 The classname of the header column
 
-####colClassName
+#### colClassName
 The classname of the cell
 
-####colClick
+#### colClick
 Function to be called when the cell is clicked
 
-####elementClick
+#### elementClick
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
 Function to be called when the element is clicked
 
-####elementClassName
+#### elementClassName
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
 The classname of the element
 
-###Records
+### Records
 The records field contains the records. Only the fields defined in the columns field will be displayed
 ```javascript
 tableData.records = [
@@ -63,7 +63,7 @@ tableData.records = [
 ];
 ```
 
-###options
+### options
 ```javascript
 tableData.options = {
     headerClassName: 'header',
@@ -74,26 +74,26 @@ tableData.options = {
     useDefaultCss: false
 }
 ```
-####headerClassName
+#### headerClassName
 The classname of the header
 
-####recordParentClassName
+#### recordParentClassName
 The classname of the record container
 
-####recordClassName
+#### recordClassName
 The classname of the records
 
-####headerSort
+#### headerSort
 Set true if you want to sort the table by clicking the header columns
 
-####recordClick
+#### recordClick
 Function to be executed when a records is clicked. 
 Returns both the data record and the generated dom record
 
-####useDefaultCss
+#### useDefaultCss
 NOT IMPLEMENTED
 
-##Example
+## Example
 ```javascript
 //Define table data
 let tableData = {
