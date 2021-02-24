@@ -1,7 +1,7 @@
 ## Usage
 ### Initialization
 ```javascript
-const table = new Table(table_data, document.getElementById('tableParent'));
+const table = new Table(tableData, document.getElementById('tableParent'));
 ```
 ### Updating records
 ```javascript
@@ -17,7 +17,7 @@ let tableData = {
     options: options
 };
 ```
-### Columns options
+### columns
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
@@ -52,7 +52,7 @@ Function to be called when the element is clicked
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
 The classname of the element
 
-### Records
+### records
 The records field contains the records. Only the fields defined in the columns field will be displayed
 ```javascript
 tableData.records = [
