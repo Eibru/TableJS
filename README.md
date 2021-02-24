@@ -95,7 +95,8 @@ NOT IMPLEMENTED
 
 ## Example
 ```javascript
-//Define table data
+import {Table, FIELDTYPES } from './table.js';
+
 let tableData = {
     columns: tableData.columns = [
         { dataField: 'ProdId', headerText: 'Prod ID', type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' },
@@ -111,10 +112,9 @@ let tableData = {
         useDefaultCss: false
     }
 };
-//Initialize table
+
 const table = new Table(table_data, document.getElementById('tableParent'));
 
 function onData(records){
-    //Simply pass the new data into the updateRecrods method
     table.updateRecords(records);
 }
