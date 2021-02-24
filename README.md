@@ -118,3 +118,5 @@ const table = new Table(table_data, document.getElementById('tableParent'));
 function onData(records){
     table.updateRecords(records);
 }
+
+```
