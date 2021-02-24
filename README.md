@@ -1,5 +1,4 @@
-
-##Usage
+#Usage
 ###Initialization
 ```javascript
 const table = new Table(table_data, document.getElementById('tableParent'));
