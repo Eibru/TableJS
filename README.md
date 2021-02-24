@@ -1,14 +1,14 @@
-## Usage
-### Initialization
+# Usage
+## Initialization
 ```javascript
 const table = new Table(tableData, document.getElementById('tableParent'));
 ```
-### Updating records
+## Updating records
 ```javascript
 table.updateRecords(array);
 ```
 
-## Table data definition
+# Table data definition
 Table data is required to initialize the table
 ```javascript
 let tableData = {
@@ -17,7 +17,7 @@ let tableData = {
     options: options
 };
 ```
-### columns
+## columns
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
@@ -52,7 +52,7 @@ Function to be called when the element is clicked
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
 The classname of the element
 
-### records
+## records
 The records field contains the records. Only the fields defined in the columns field will be displayed
 ```javascript
 tableData.records = [
@@ -63,7 +63,7 @@ tableData.records = [
 ];
 ```
 
-### options
+## options
 ```javascript
 tableData.options = {
     headerClassName: 'header',
