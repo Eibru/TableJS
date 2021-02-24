@@ -2,7 +2,8 @@ export const FIELDTYPES = Object.freeze({
     TEXT: 0,
     NUMBER: 1,
     BUTTON: 2,
-    CHECKBOX: 3
+    CHECKBOX: 3,
+    DATE: 4
 });
 
 export class Table{
@@ -17,10 +18,11 @@ export class Table{
         this.sortIndex = null;
         this.sortReverse = false;
         this.parent = parent;
-        this.headerParent = document.createElement('div');
+        this.tableHeader = document.createElement('div');
         this.recordParent = document.createElement('div');
-        this.parent.appendChild(this.headerParent);
+        this.parent.appendChild(this.tableHeader);
         this.parent.appendChild(this.recordParent);
+        this.createHeaders();
     }
 
     /**
@@ -39,8 +41,8 @@ export class Table{
      * Updates the table with new data
      * @param {any[]} data records
      */
-    updateData(data){
-        this.data.records = data; 
+    updateRecords(records){
+        this.data.updateRecords = records; 
         this.create();
     }
 
@@ -73,14 +75,14 @@ export class Table{
      * Renders the headers into the parent specified in the constructor
      */
     createHeaders(){
-        this.headerParent.innerHTML = '';
-        if(this.data.options.headerClass) this.headerParent.className = this.data.options.headerClass;
+        this.tableHeader.innerHTML = '';
+        if(this.data.options.headerClassName) this.tableHeader.className = this.data.options.headerClassName;
         this.data.columns.forEach((column)=>{
             const col = document.createElement('div');
             col.innerHTML = column.headerText;
             if(column.headerColClassName) col.className = column.headerColClassName;
             if(this.data.options.headerSort) col.onclick = ()=>{ this.headerClick(column.dataField); }
-            this.headerParent.appendChild(col);
+            this.tableHeader.appendChild(col);
         });
     }
 
@@ -89,7 +91,7 @@ export class Table{
      */
     create(){
         this.recordParent.innerHTML = '';
-        if(this.data.options.recordParentClass) this.recordParent.className = this.data.options.recordParentClass;
+        if(this.data.options.recordParentClassName) this.recordParent.className = this.data.options.recordParentClassName;
         
         //Create a copy of the records(This is to get expected resoults from sorting the data)
         const records = [...this.data.records];
@@ -111,10 +113,14 @@ export class Table{
         records.forEach((record)=>{
             //Create row as div element and append the data to it
             const row = document.createElement('div');
-            if(this.data.options.recordClass) row.className = this.data.options.recordClass;
+            if(this.data.options.recordClassName) row.className = this.data.options.recordClassName;
             this.data.columns.forEach((column)=>{
                 const col = document.createElement('div');
                 switch(column.type){
+                    case FIELDTYPES.DATE:
+                        col.innerHTML = record[column.dataField].split('T')[0];
+                        if(column.colClick) col.onclick = ()=>{ column.colClick(record, col); }
+                        break;
                     case FIELDTYPES.TEXT:
                     case FIELDTYPES.NUMBER:
                         col.innerHTML = record[column.dataField];
@@ -142,7 +148,7 @@ export class Table{
             });
 
             //Set row onclick event and append row to parent
-            if(this.data.options.recordOnClick) row.onclick = ()=>{ this.data.options.recordOnClick(record, row); }
+            if(this.data.options.recordClick) row.onclick = ()=>{ this.data.options.recordClick(record, row); }
             this.recordParent.appendChild(row);
         });
     }
@@ -166,12 +172,11 @@ var exampleData = {
     ], 
 
     options: {
-        headerSort: true,
         headerClassName: '',
-        headerColClassName: '',
+        recordParentClassName: '',
         recordClassName: '',
-        recordColClassName: '',
-        recordOnClick: ()=>{},
-        recordParentClass: ''
+        headerSort: true,
+        recordClick: ()=>{}, 
+        useDefaultCss: false
     }
 }*/
