@@ -97,6 +97,7 @@ NOT IMPLEMENTED
 ```javascript
 import {Table, FIELDTYPES } from './table.js';
 
+//Define table data
 let tableData = {
     columns: tableData.columns = [
         { dataField: 'ProdId', headerText: 'Prod ID', type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' },
@@ -113,8 +114,10 @@ let tableData = {
     }
 };
 
+//Initialize the table
 const table = new Table(table_data, document.getElementById('tableParent'));
 
+//Update recrods
 function onData(records){
     table.updateRecords(records);
 }
