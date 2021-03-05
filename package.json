@@ -4,12 +4,16 @@
   "description": "Table library",
   "main": "table.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "http://192.168.123.42:3090/interfil/TableJS.git"
   },
   "author": "Eilev Brustugun",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

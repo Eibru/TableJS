@@ -13,7 +13,8 @@ export class Table{
      * @param {HTMLElement} parent 
      */
     constructor(data, parent){
-        if(!data || !data.columns || !data.records || !data.options || !Array.isArray(data.columns) || !Array.isArray(data.records) || typeof data.options !== 'object' || !parent || !(parent instanceof HTMLElement)) throw new Error('Data is not supported');
+        if(!data || !data.columns || !data.records || !data.options || !Array.isArray(data.columns) || !Array.isArray(data.records) || typeof data.options !== 'object') throw new Error('Data is not supported');
+        if(!parent || !(parent instanceof HTMLElement)) throw new Error('Parent is either null or of unexpected type.');
         this.data = data;
         this.sortIndex = null;
         this.sortReverse = false;
@@ -23,6 +24,7 @@ export class Table{
         this.parent.appendChild(this.tableHeader);
         this.parent.appendChild(this.recordParent);
         this.createHeaders();
+        this.create();
     }
 
     /**
@@ -42,7 +44,7 @@ export class Table{
      * @param {any[]} data records
      */
     updateRecords(records){
-        this.data.updateRecords = records; 
+        this.data.records = records; 
         this.create();
     }
 
@@ -76,14 +78,43 @@ export class Table{
      */
     createHeaders(){
         this.tableHeader.innerHTML = '';
-        if(this.data.options.headerClassName) this.tableHeader.className = this.data.options.headerClassName;
+
+        //Header style
+        this.tableHeader.className = 'tablejs_header' + (' ' + this.data.options.headerClassName ? this.data.options.headerClassName : '');
+        this.tableHeader.style.display = 'flex';
+
+        //Iterate columns
         this.data.columns.forEach((column)=>{
             const col = document.createElement('div');
             col.innerHTML = column.headerText;
-            if(column.headerColClassName) col.className = column.headerColClassName;
+
+            //Header-column style
+            col.className = 'tablejs_column tablejs_headerColumn' + (column.headerColClassName ? ' ' + column.headerColClassName : '' );
+            this.applyColumnStyle(column, col);
+
             if(this.data.options.headerSort) col.onclick = ()=>{ this.headerClick(column.dataField); }
             this.tableHeader.appendChild(col);
         });
+    }
+
+    applyColumnStyle(column, col){
+        col.style.flex = '1 0 0%';
+        col.style.textAlign = 'center';
+        if(column.width){
+            if(column.width > 0 && column.width < 13) col.style.flex = '0 0 auto';
+            if(column.width === 1) col.style.width = '8.3333333333%';
+            else if(column.width === 2) col.style.width = '16.6666666667%';
+            else if(column.width === 3) col.style.width = '25%';
+            else if(column.width === 4) col.style.width = '33.3333333333%';
+            else if(column.width === 5) col.style.width = '41.6666666667%';
+            else if(column.width === 6) col.style.width = '50%';
+            else if(column.width === 7) col.style.width = '58.3333333333%';
+            else if(column.width === 8) col.style.width = '66.6666666667%';
+            else if(column.width === 9) col.style.width = '75%';
+            else if(column.width === 10) col.style.width = '83.3333333333%';
+            else if(column.width === 11) col.style.width = '91.6666666667%';
+            else if(column.width === 12) col.style.width = '100%';
+        }
     }
 
     /**
@@ -91,6 +122,7 @@ export class Table{
      */
     create(){
         this.recordParent.innerHTML = '';
+        this.recordParent.className = ''
         if(this.data.options.recordParentClassName) this.recordParent.className = this.data.options.recordParentClassName;
         
         //Create a copy of the records(This is to get expected resoults from sorting the data)
@@ -99,14 +131,13 @@ export class Table{
         //If sortindex is not null, sort the data
         if(this.sortIndex){
             this.sort(records,(a,b)=>{
-                //let A = Number.isFinite(a[this.sortIndex]) || (Number.isFinite(Number(a[this.sortIndex])) && typeof a[this.sortIndex] === 'string') ? Number(a[this.sortIndex]) : a[this.sortIndex];
-                //let B = Number.isFinite(b[this.sortIndex]) || (Number.isFinite(Number(b[this.sortIndex])) && typeof b[this.sortIndex] === 'string') ? Number(b[this.sortIndex]) : b[this.sortIndex];
                 let A = a[this.sortIndex];
                 let B = b[this.sortIndex];
-                if((this.sortReverse && A > B) || (!this.sortReverse && A < B)) return -1;
-                else if((this.sortReverse && A < B) || (!this.sortReverse && A > B)) return 1;
+                if(A < B) return -1;
+                else if(A > B) return 1;
                 return 0;
             });
+            if(this.sortReverse) records.reverse();
         }
 
         //Iterate the sorted recrods
@@ -114,22 +145,24 @@ export class Table{
             //Create row as div element and append the data to it
             const row = document.createElement('div');
             if(this.data.options.recordClassName) row.className = this.data.options.recordClassName;
+            row.style.display = 'flex';
+
+
+
             this.data.columns.forEach((column)=>{
                 const col = document.createElement('div');
                 switch(column.type){
                     case FIELDTYPES.DATE:
                         col.innerHTML = record[column.dataField].split('T')[0];
-                        if(column.colClick) col.onclick = ()=>{ column.colClick(record, col); }
                         break;
                     case FIELDTYPES.TEXT:
                     case FIELDTYPES.NUMBER:
                         col.innerHTML = record[column.dataField];
-                        if(column.colClick) col.onclick = ()=>{ column.colClick(record, col); }
                         break;
                     case FIELDTYPES.BUTTON:
                         const button = document.createElement('button');
                         button.innerHTML = record[column.dataField];
-                        if(column.elementClick) button.onclick = ()=>{ column.elementClick(record, col); }
+                        if(column.elementClick) button.onclick = ()=>{ column.elementClick(column, col, record); }
                         if(column.elementClassName) button.className = column.elementClassName;
                         col.appendChild(button);
                         break;
@@ -139,16 +172,23 @@ export class Table{
                         if(typeof record[column.dataField] === 'boolean') checkbox.checked = record[column.dataField];
                         if(column.elementClick) checkbox.onclick = ()=>{ column.elementClick(record, checkbox.checked); }
                         if(column.elementClassName) checkbox.className = column.elementClassName;
-                        col.onclick = (e)=>{ if(e.target !== checkbox) checkbox.click(); } //Temp?
                         col.appendChild(checkbox);
                         break;
                 }
+
+                //Column style
                 if(column.colClassName) col.className = column.colClassName;
+                this.applyColumnStyle(column, col);
+
+
+                if(column.colClick) col.onclick = ()=>{ column.colClick(column, col, record); };
+                if(column.colBeforePrint) column.colBeforePrint(column, col, record);
                 row.appendChild(col);
             });
 
             //Set row onclick event and append row to parent
             if(this.data.options.recordClick) row.onclick = ()=>{ this.data.options.recordClick(record, row); }
+            if(this.data.options.recordBeforePrint) this.data.options.recordBeforePrint(record, row);
             this.recordParent.appendChild(row);
         });
     }
@@ -158,9 +198,9 @@ export class Table{
 /*
 var exampleData = {
     columns: [
-        { dataField: 'Qty', headerText: 'Antall', type: FIELDTYPES.TEXT, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick: ()=>{}, elementClassName: '' },
-        { dataField: 'ProdId', headerText: 'ProdId', type: FIELDTYPES.BUTTON, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' }
-        { dataField: 'Done', headerText: 'Done', type: FIELDTYPES.CHECKBOX, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' }
+        { dataField: 'Qty', headerText: 'Antall', type: FIELDTYPES.TEXT, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick: ()=>{}, elementClassName: '', width: 5 },
+        { dataField: 'ProdId', headerText: 'ProdId', type: FIELDTYPES.BUTTON, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick()=>{}, elementClassName: '', width: 5 }
+        { dataField: 'Done', headerText: 'Done', type: FIELDTYPES.CHECKBOX, headerColClassName: '', colClassName: '', colClick: ()=>{}, elementClick()=>{}, elementClassName: '', width: 2 }
     ],
 
     records: [
