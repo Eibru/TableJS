@@ -30,7 +30,7 @@ let tableData = {
     options: options
 };
 <br/>
-
+<br/>
 
 
 ```
@@ -61,10 +61,12 @@ The classname of the header column
 <br/>
 #### colClassName
 The classname of the cell  
+<br/>
 
 #### elementClassName
 The classname of the element  
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX  
+<br/>
 
 #### colClick
 Function to be called when the cell is clicked  
@@ -75,6 +77,7 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record  
+<br/>
 
 #### elementClick
 Function to be called when the element is clicked  
@@ -86,6 +89,7 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record  
+<br/>
 
 #### colBeforePrint
 A function that is called before printing the cell  
