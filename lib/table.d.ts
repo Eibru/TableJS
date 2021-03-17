@@ -15,7 +15,7 @@ export interface TableColumn<T> {
     headerColClassName?: string;
     colClassName?: string;
     elementClassName?: string;
-    colClick?: (column:TableColumn<T>, col:HTMLElement, record:Object)=>void;
+    colClick?: (column:TableColumn<T>, col:HTMLElement, record:T)=>void;
     elementClick?: (column:TableColumn<T>, col:HTMLElement, record:T)=>void;
     colBeforePrint?: (column:TableColumn<T>, col:HTMLElement, record:T)=>void;
 }
@@ -41,13 +41,13 @@ export declare class Table<T>{
     private parent: HTMLElement;
     private tableHeader: HTMLElement;
     private recordParent: HTMLElement;
-    private records: Object[];
+    private records: T[];
 
-    constructor(data: TableData<T>, parent: HTMLElement, records?: T[]);
+    constructor(data: TableData<T>, parent: HTMLElement|null, records?: T[]);
     private checkRecords(): void;
     private headerClick(index:string): void;
-    updateRecords(records:Object[]): void;
-    private sort(array:Object[], func:(a:Object, b:Object)=>Number): void;
+    updateRecords(records:T[]): void;
+    private sort(array:T[], func:(a:Object, b:Object)=>Number): void;
     private createHeaders(): void;
     private applyColumnStyle(column: TableColumn<T>, col: HTMLElement): void;
     create(): void;
