@@ -17,7 +17,8 @@
   "author": "Eilev Brustugun",
   "types": "./lib/table.d.ts",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "typescript": "^4.2.3"
   }
 }

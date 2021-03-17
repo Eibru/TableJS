@@ -34,7 +34,7 @@ export interface TableData<T>{
     options: TableOptions<T>;
 }
 
-export declare class Table<T>{
+export declare class Table{
     private data: TableData<T>;
     private sortIndex: string|null;
     private sortReverse: Boolean;
