@@ -7,7 +7,7 @@ export enum FIELDTYPE {
     DATE = 4
 }
 
-export interface TableColumn {
+export interface TableColumn<T> {
     dataField: string;
     headerText: string;
     width?: Number;
@@ -15,27 +15,27 @@ export interface TableColumn {
     headerColClassName?: string;
     colClassName?: string;
     elementClassName?: string;
-    colClick?: (column:TableColumn, col:HTMLElement, record:Object)=>void;
-    elementClick?: (column:TableColumn, col:HTMLElement, record:Object)=>void;
-    colBeforePrint?: (column:TableColumn, col:HTMLElement, record:Object)=>void;
+    colClick?: (column:TableColumn<T>, col:HTMLElement, record:Object)=>void;
+    elementClick?: (column:TableColumn<T>, col:HTMLElement, record:T)=>void;
+    colBeforePrint?: (column:TableColumn<T>, col:HTMLElement, record:T)=>void;
 }
 
-export interface TableOptions {
+export interface TableOptions<T> {
     headerClassName?: string;
     recordParentClassName?: string;
     recordClassName?: string;
     headerSort?: Boolean;
-    recordClick?: (record:Object, rec: HTMLElement)=>void;
-    recordBeforePrint?: (record:Object, rec: HTMLElement)=>void;
+    recordClick?: (record:T, rec: HTMLElement)=>void;
+    recordBeforePrint?: (record:T, rec: HTMLElement)=>void;
 }
 
-export interface TableData{
-    columns: TableColumn[];
-    options: TableOptions;
+export interface TableData<T>{
+    columns: TableColumn<T>[];
+    options: TableOptions<T>;
 }
 
 export declare class Table<T>{
-    private data: TableData;
+    private data: TableData<T>;
     private sortIndex: string|null;
     private sortReverse: Boolean;
     private parent: HTMLElement;
@@ -43,12 +43,12 @@ export declare class Table<T>{
     private recordParent: HTMLElement;
     private records: Object[];
 
-    constructor(data: TableData, parent: HTMLElement, records?: T[]);
-    checkRecords(): void;
-    headerClick(index:string): void;
+    constructor(data: TableData<T>, parent: HTMLElement, records?: T[]);
+    private checkRecords(): void;
+    private headerClick(index:string): void;
     updateRecords(records:Object[]): void;
-    sort(array:Object[], func:(a:Object, b:Object)=>Number): void;
-    createHeaders(): void;
-    applyColumnStyle(column: TableColumn, col: HTMLElement): void;
+    private sort(array:Object[], func:(a:Object, b:Object)=>Number): void;
+    private createHeaders(): void;
+    private applyColumnStyle(column: TableColumn<T>, col: HTMLElement): void;
     create(): void;
 }
