@@ -8,7 +8,7 @@ export enum FIELDTYPE {
 }
 
 export interface TableColumn<T> {
-    dataField: string;
+    dataField: keyof T;
     headerText: string;
     width?: Number;
     type: FIELDTYPE;
