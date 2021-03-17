@@ -5,7 +5,9 @@ npm install --save git+http://192.168.123.42:3090/interfil/TableJS.git
 ```
 The file should now be stored in your "node_modules" folder. Copy the "Table.js" file to the project folder.
 
+<br/>
 ---
+<br/>
 
 # Usage
 ## Initialization
@@ -15,6 +17,7 @@ const table = new Table(tableData, document.getElementById('tableParent'));
 
 <br/>
 ---
+<br/>
 
 ## Updating records with data
 ```javascript
@@ -23,6 +26,7 @@ table.updateRecords(array);
 
 <br/>
 ---
+<br/>
 
 # Table data definition
 Table data is required to initialize the table
@@ -33,8 +37,8 @@ let tableData = {
     options: options
 };
 <br/>
-<br/>
 ---
+<br/>
 
 ```
 ## columns
@@ -102,9 +106,10 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record  
-<br/>
+
 <br/>
 ---
+<br/>
 
 
 
@@ -124,6 +129,7 @@ tableData.records = [
 
 <br/>
 ---
+<br/>
 
 ## options
 ```javascript
@@ -165,6 +171,7 @@ The generated html record
   
 <br/>
 ---
+<br/>
 
 ## Example
 ```javascript
