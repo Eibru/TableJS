@@ -1,0 +1,20 @@
+{
+  "name": "tablejs",
+  "version": "1.0.0",
+  "description": "Html and dom manipulation is pain. This library helps create simple tables in javascript. <br/>\r You will have to write your own css to make it look decent.",
+  "main": "lib/table.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.123.42:3090/interfil/TableJS.git"
+  },
+  "author": "Eilev Brustugun",
+  "types": "./lib/table.d.ts",
+  "license": "ISC"
+}
