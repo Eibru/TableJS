@@ -33,8 +33,7 @@ table.updateRecords(array);
 Table data is required to initialize the table
 ```javascript
 let tableData = {
-    columns: columns,
-    records: records,
+    columns: columns
     options: options
 };
 ```
@@ -46,8 +45,8 @@ let tableData = {
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
-    { dataField: 'ProdId', headerText: 'Prod ID', width: 8, type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } },
-    { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
+    { dataField: 'ProdId', headerText: 'Prod ID', width: 8, type: FIELDTYPE.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } },
+    { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPE.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
 ];
 ```
 
@@ -72,7 +71,7 @@ The classname of the cell
 
 #### elementClassName
 The classname of the element  
-Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX  
+Only used when type is either FIELDTYPE.BUTTON or FIELDTYPE.CHECKBOX  
 <br/>
 
 #### colClick
@@ -88,7 +87,7 @@ The data record
 
 #### elementClick
 Function to be called when the element is clicked  
-Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX  
+Only used when type is either FIELDTYPE.BUTTON or FIELDTYPE.CHECKBOX  
 ##### Parameters
 ###### dataCol 
 The data column / this
@@ -107,25 +106,6 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record
-
----
-<br/>
-
-
-
-
-
-
-## records
-The records field contains the records. Only the fields defined in the columns field will be displayed
-```javascript
-tableData.records = [
-    { ProdId: 'PR000001', Qty: 10},
-    { ProdId: 'PR000002', Qty: 4},
-    { ProdId: 'PR000003', Qty: 6},
-    { ProdId: 'PR000004', Qty: 12}
-];
-```
 
 ---
 <br/>
@@ -173,15 +153,15 @@ The generated html record
 
 ## Example
 ```javascript
-import {Table, FIELDTYPES } from './table.js';
+import {Table, FIELDTYPE } from './table.js';
 
 //Define table data
 let tableData = {
     columns: [
-        { dataField: 'ProdId', headerText: 'ProdId', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
-        { dataField: 'Status', headerText: 'Status', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
-        { dataField: 'Qty', headerText: 'Quantity', width: 3, type: FIELDTYPES.NUMBER, headerColClassName: 'header-col', colClassName: 'col' },
-        { dataField: 'Remain', headerText: 'Remaining quantity', width: 3, type: FIELDTYPES.NUMBER, headerColClassName: 'header-col', colClassName: 'col' }
+        { dataField: 'ProdId', headerText: 'ProdId', width: 3, type: FIELDTYPE.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Status', headerText: 'Status', width: 3, type: FIELDTYPE.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Qty', headerText: 'Quantity', width: 3, type: FIELDTYPE.NUMBER, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Remain', headerText: 'Remaining quantity', width: 3, type: FIELDTYPE.NUMBER, headerColClassName: 'header-col', colClassName: 'col' }
     ],
     options: {
         headerClassName: 'header',
