@@ -37,7 +37,7 @@ let tableData = {
     records: records,
     options: options
 };
-
+```
 ---
 <br/>
 
