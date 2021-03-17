@@ -123,15 +123,19 @@ tableData.options = {
 ```
 #### headerClassName
 The classname of the header  
+<br/>
 
 #### recordParentClassName
 The classname of the record container  
+<br/>
 
 #### recordClassName
 The classname of the records  
+<br/>
 
 #### headerSort
 Set true if you want to sort the table by clicking the header columns  
+<br/>
 
 #### recordClick
 A function which is called when a record is clicked
@@ -140,6 +144,7 @@ A function which is called when a record is clicked
 The data record that was clicked
 ###### htmlRec
 The generated html record  
+<br/>
 
 #### recordBeforePrint
 ##### Parameters
