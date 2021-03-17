@@ -43,7 +43,7 @@ export declare class Table<T>{
     private recordParent: HTMLElement;
     private records: T[];
 
-    constructor(data: TableData<T>, parent: HTMLElement|null, records?: T[]);
+    constructor(data: TableData<T>, parent?: HTMLElement, records?: T[]);
     private checkRecords(): void;
     private headerClick(index:string): void;
     updateRecords(records:T[]): void;
