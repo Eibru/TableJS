@@ -5,7 +5,7 @@ Simple tables in javascript. No. More. DOM. Manipulation.
 To download the library, simply run this command in your project folder
 ```shell
 npm install --save git+http://192.168.123.42:3090/interfil/TableJS.git
-```
+```   
 The file should now be stored in your "node_modules" folder. Copy the "Table.js" file to the project folder.
 ---
 <br/>
