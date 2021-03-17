@@ -11,10 +11,15 @@ The file should now be stored in your "node_modules" folder. Copy the "Table.js"
 ```javascript
 const table = new Table(tableData, document.getElementById('tableParent'));
 ```
+
+<br/>
+
 ## Updating records with data
 ```javascript
 table.updateRecords(array);
 ```
+
+<br/>
 
 # Table data definition
 Table data is required to initialize the table
@@ -24,6 +29,10 @@ let tableData = {
     records: records,
     options: options
 };
+<br/>
+
+
+
 ```
 ## columns
 The columns field in the tableData object contains an array where each record in the array describes a column
@@ -37,19 +46,19 @@ tableData.columns = [
 
 #### dataField
 The name of the related field in the records  
-
+<br/>
 #### headerText
 The text to be displayed in the header column  
-
+<br/>
 #### width
 The with of the column. Similarly to the bootstrap css library, a row is defined to have a width of 12, so all the widths of the columns has to add up to 12 or lower.  
-
+<br/>
 #### type
 Describes which datatype the cell should contain  
-
+<br/>
 #### headerColClassName
 The classname of the header column  
-
+<br/>
 #### colClassName
 The classname of the cell  
 
@@ -87,6 +96,14 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record  
+<br/>
+<br/>
+
+
+
+
+
+
 
 ## records
 The records field contains the records. Only the fields defined in the columns field will be displayed
