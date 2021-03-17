@@ -41,7 +41,7 @@ let tableData = {
 ---
 <br/>
 
-```
+
 ## columns
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
