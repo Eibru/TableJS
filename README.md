@@ -1,3 +1,6 @@
+# Intro
+Simple tables in javascript. No. More. DOM. Manipulation.
+
 # Installation
 To download the library, simply run this command in your project folder
 ```shell
