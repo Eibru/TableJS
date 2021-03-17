@@ -11,7 +11,7 @@ The file should now be stored in your "node_modules" folder. Copy the "Table.js"
 ```javascript
 const table = new Table(tableData, document.getElementById('tableParent'));
 ```
-## Updating records
+## Updating records with data
 ```javascript
 table.updateRecords(array);
 ```
@@ -29,16 +29,20 @@ let tableData = {
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
-    { dataField: 'ProdId', headerText: 'Prod ID', type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' },
-    { dataField: 'Qty', headerText: 'Quantity', type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: ()=>{}, elementClick: ()=>{}, elementClassName: '' }
+    { dataField: 'ProdId', headerText: 'Prod ID', width: 8, type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } },
+    { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
 ];
 ```
+
 
 #### dataField
 The name of the related field in the records
 
 #### headerText
 The text to be displayed in the header column
+
+#### width
+The with of the column. Similarly to the bootstrap css library, a row is defined to have a width of 12, so all the widths of the columns has to add up to 12 or lower.
 
 #### type
 Describes which datatype the cell should contain
@@ -49,16 +53,40 @@ The classname of the header column
 #### colClassName
 The classname of the cell
 
+#### elementClassName
+The classname of the element  
+Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
+
 #### colClick
 Function to be called when the cell is clicked
+##### Parameters
+###### dataCol 
+The data column / this
+###### htmlCol
+The generated html column
+###### dataRec
+The data record
 
 #### elementClick
+Function to be called when the element is clicked  
 Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
-Function to be called when the element is clicked
+##### Parameters
+###### dataCol 
+The data column / this
+###### htmlCol
+The generated html column
+###### dataRec
+The data record
 
-#### elementClassName
-Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
-The classname of the element
+#### colBeforePrint
+A function that is called before printing the cell  
+##### Parameters
+###### dataCol 
+The data column / this
+###### htmlCol
+The generated html column
+###### dataRec
+The data record
 
 ## records
 The records field contains the records. Only the fields defined in the columns field will be displayed
@@ -95,11 +123,19 @@ The classname of the records
 Set true if you want to sort the table by clicking the header columns
 
 #### recordClick
-Function to be executed when a records is clicked. 
-Returns both the data record and the generated dom record
+A function which is called when a record is clicked
+##### Parameters
+###### dataRec 
+The data record that was clicked
+###### htmlRec
+The generated html record
 
-#### useDefaultCss
-NOT IMPLEMENTED
+#### recordBeforePrint
+##### Parameters
+###### dataRec 
+The data record that is being processed
+###### htmlRec
+The generated html record
 
 ## Example
 ```javascript
@@ -108,26 +144,37 @@ import {Table, FIELDTYPES } from './table.js';
 //Define table data
 let tableData = {
     columns: tableData.columns = [
-        { dataField: 'ProdId', headerText: 'Prod ID', type: FIELDTYPES.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: ()=>{}, elementClick()=>{}, elementClassName: '' },
-        { dataField: 'Qty', headerText: 'Quantity', type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: ()=>{}, elementClick: ()=>{}, elementClassName: '' }
+        { dataField: 'ProdId', headerText: 'ProdId', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Status', headerText: 'Status', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Qty', headerText: 'Quantity', width: 3, type: FIELDTYPES.NUMBER, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Remain', headerText: 'Remaining quantity', width: 3, type: FIELDTYPES.NUMBER, headerColClassName: 'header-col', colClassName: 'col' }
     ],
-    records: [],
     options: {
         headerClassName: 'header',
         recordParentClassName: 'records',
         recordClassName: 'row record',
         headerSort: true,
-        recordClick: (dataRec, domRec)=>{ console.log(dataRec); }, 
-        useDefaultCss: false
+        recordClick: (dataRec, domRec)=>{ 
+            alert(dataRec.ProdId + ' clicked!');
+        }, 
+        recordBeforePrint: (dataRec, domRec)=>{
+            if(dataRec.Status === 'Done')
+                dataRec.style.backgroundColor = '#60bd68';
+        }
     }
 };
 
 //Initialize the table
 const table = new Table(table_data, document.getElementById('tableParent'));
 
-//Update recrods
-function onData(records){
-    table.updateRecords(records);
-}
+//Data records
+let records = [
+    { ProdId: 'PR000001', Status: 'Done', Qty: 12, Remain: 0 },
+    { ProdId: 'PR000002', Status: 'InProgress', Qty: 20, Remain: 10 },
+    { ProdId: 'PR000003', Status: 'NotStarted', Qty: 10, Remain: 10 }
+];
+
+//Update the table with recrods
+table.updateRecords(records);
 
 ```
