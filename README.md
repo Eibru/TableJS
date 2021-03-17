@@ -192,3 +192,65 @@ let records = [
 table.updateRecords(records);
 
 ```
+
+---
+<br/>
+
+## Typescript
+### Install types
+```shell
+npm install --save-dev @types/git+http://192.168.123.42:3090/interfil/TableJS.git
+```
+---
+<br/>
+
+### Example
+```typescript
+import { Table, TableColumn, TableData, TableOptions, FIELDTYPE } from './node_modules/tablejs/lib/table.js';
+
+//Define structure for record
+interface Record {
+    ProdId:string;
+    Status:string;
+    Qty:Number;
+    Remain:Number;
+}
+
+//Define table data
+let tableData:TableData<Record> = {
+    columns: [
+        { dataField: 'ProdId', headerText: 'ProdId', width: 3, type: FIELDTYPE.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Status', headerText: 'Status', width: 3, type: FIELDTYPE.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Qty', headerText: 'Quantity', width: 3, type: FIELDTYPE.NUMBER, headerColClassName: 'header-col', colClassName: 'col' },
+        { dataField: 'Remain', headerText: 'Remaining quantity', width: 3, type: FIELDTYPE.NUMBER, headerColClassName: 'header-col', colClassName: 'col' }
+    ],
+    options: {
+        headerClassName: 'header',
+        recordParentClassName: 'records',
+        recordClassName: 'row record',
+        headerSort: true,
+        recordClick: (dataRec:Record, domRec:HTMLElement)=>{ 
+            alert(dataRec.ProdId + ' clicked!');
+        }, 
+        recordBeforePrint: (dataRec:Record, domRec:HTMLElement)=>{
+            if(dataRec.Status === 'Done')
+                domRec.style.backgroundColor = '#60bd68';
+        }
+    }
+};
+
+//Data records
+let records = [
+    { ProdId: 'PR000001', Status: 'Done', Qty: 12, Remain: 0 },
+    { ProdId: 'PR000002', Status: 'InProgress', Qty: 20, Remain: 10 },
+    { ProdId: 'PR000003', Status: 'NotStarted', Qty: 10, Remain: 10 }
+];
+
+//Initialize the table
+if(document.getElementById('table')){
+    const table = new Table(tableData, document.getElementById('table'));
+    table.updateRecords(records);
+}
+
+```
+
