@@ -31,11 +31,10 @@ export interface TableOptions {
 
 export interface TableData{
     columns: TableColumn[];
-    records?: Object[];
     options: TableOptions;
 }
 
-export declare class Table{
+export declare class Table<T>{
     private data: TableData;
     private sortIndex: string|null;
     private sortReverse: Boolean;
@@ -44,7 +43,7 @@ export declare class Table{
     private recordParent: HTMLElement;
     private records: Object[];
 
-    constructor(data: TableData, parent: HTMLElement, records?: Object[]);
+    constructor(data: TableData, parent: HTMLElement, records?: T[]);
     checkRecords(): void;
     headerClick(index:string): void;
     updateRecords(records:Object[]): void;
