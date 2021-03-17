@@ -177,7 +177,7 @@ import {Table, FIELDTYPES } from './table.js';
 
 //Define table data
 let tableData = {
-    columns: tableData.columns = [
+    columns: [
         { dataField: 'ProdId', headerText: 'ProdId', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
         { dataField: 'Status', headerText: 'Status', width: 3, type: FIELDTYPES.TEXT, headerColClassName: 'header-col', colClassName: 'col' },
         { dataField: 'Qty', headerText: 'Quantity', width: 3, type: FIELDTYPES.NUMBER, headerColClassName: 'header-col', colClassName: 'col' },
@@ -199,7 +199,7 @@ let tableData = {
 };
 
 //Initialize the table
-const table = new Table(table_data, document.getElementById('tableParent'));
+const table = new Table(tableData, document.getElementById('tableParent'));
 
 //Data records
 let records = [
