@@ -42,7 +42,7 @@ tableData.columns = [
     { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
 ];
 ```
-
+---
 
 #### dataField
 The name of the related field in the records  
