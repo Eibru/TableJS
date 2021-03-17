@@ -7,6 +7,7 @@ To download the library, simply run this command in your project folder
 npm install --save git+http://192.168.123.42:3090/interfil/TableJS.git
 ```   
 The file should now be stored in your "node_modules" folder. Copy the "Table.js" file to the project folder.
+
 ---
 <br/>
 
@@ -15,6 +16,7 @@ The file should now be stored in your "node_modules" folder. Copy the "Table.js"
 ```javascript
 const table = new Table(tableData, document.getElementById('tableParent'));
 ```
+
 ---
 <br/>
 
@@ -22,6 +24,7 @@ const table = new Table(tableData, document.getElementById('tableParent'));
 ```javascript
 table.updateRecords(array);
 ```
+
 ---
 <br/>
 
@@ -33,6 +36,7 @@ let tableData = {
     records: records,
     options: options
 };
+
 ---
 <br/>
 
@@ -102,6 +106,7 @@ The data column / this
 The generated html column
 ###### dataRec
 The data record
+
 ---
 <br/>
 
@@ -120,6 +125,7 @@ tableData.records = [
     { ProdId: 'PR000004', Qty: 12}
 ];
 ```
+
 ---
 <br/>
 
@@ -160,6 +166,7 @@ The generated html record
 The data record that is being processed
 ###### htmlRec
 The generated html record
+
 ---
 <br/>
 
