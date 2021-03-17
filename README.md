@@ -45,8 +45,8 @@ let tableData = {
 The columns field in the tableData object contains an array where each record in the array describes a column
 ```javascript
 tableData.columns = [
-    { dataField: 'ProdId', headerText: 'Prod ID', width: 8, type: FIELDTYPE.TEXT, headerColClassName: 'col header-col', colClassName: 'col', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } },
-    { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPE.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
+    { dataField: 'ProdId', headerText: 'Prod ID', width: 6, type: FIELDTYPE.TEXT, headerColClassName: 'header-col', colClassName: 'col', elementClassName: '', colClick: (dataCol, htmlCol, dataRec)=>{}, elementClick: (dataCol, htmlCol, dataRec)=>{}, colBeforePrint: (dataCol, htmlCol, dataRec)=>{} },
+    { dataField: 'Qty', headerText: 'Quantity', width: 6, type: FIELDTYPE.NUMBER, headerColClassName: 'header-col', colClassName: 'col', elementClassName: '', colClick: (dataCol, htmlCol, dataRec)=>{}, elementClick: (dataCol, htmlCol, dataRec)=>{}, colBeforePrint: (dataCol, htmlCol, dataRec)=>{} }
 ];
 ```
 
@@ -115,10 +115,10 @@ The data record
 tableData.options = {
     headerClassName: 'header',
     recordParentClassName: 'records',
-    recordClassName: 'row record',
+    recordClassName: 'row',
     headerSort: true,
-    recordClick: (dataRec, domRec)=>{ console.log(dataRec); }, 
-    useDefaultCss: false
+    recordClick: (dataRec, htmlRec)=>{},
+    recordBeforePrint: (dataRec, htmlRec)=>{},
 }
 ```
 #### headerClassName
