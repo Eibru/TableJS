@@ -1,5 +1,6 @@
 # Intro
-Simple tables in javascript. No. More. DOM. Manipulation.
+Html and dom manipulation is pain. This library helps create simple tables in javascript. <br/>
+You will have to write your own css to make it look decent. 
 
 # Installation
 To download the library, simply run this command in your project folder
