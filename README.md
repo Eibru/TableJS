@@ -5,6 +5,7 @@ npm install --save git+http://192.168.123.42:3090/interfil/TableJS.git
 ```
 The file should now be stored in your "node_modules" folder. Copy the "Table.js" file to the project folder.
 
+---
 
 # Usage
 ## Initialization
@@ -13,6 +14,7 @@ const table = new Table(tableData, document.getElementById('tableParent'));
 ```
 
 <br/>
+---
 
 ## Updating records with data
 ```javascript
@@ -20,6 +22,7 @@ table.updateRecords(array);
 ```
 
 <br/>
+---
 
 # Table data definition
 Table data is required to initialize the table
@@ -31,7 +34,7 @@ let tableData = {
 };
 <br/>
 <br/>
-
+---
 
 ```
 ## columns
@@ -42,7 +45,6 @@ tableData.columns = [
     { dataField: 'Qty', headerText: 'Quantity', width: 4, type: FIELDTYPES.NUMBER, headerColClassName: 'col-1 header-col', colClassName: 'col-1', colClick: (dataCol, htmlCol, dataRec)=>{ console.log(dataCol); } }
 ];
 ```
----
 
 #### dataField
 The name of the related field in the records  
@@ -102,7 +104,7 @@ The generated html column
 The data record  
 <br/>
 <br/>
-
+---
 
 
 
@@ -119,6 +121,9 @@ tableData.records = [
     { ProdId: 'PR000004', Qty: 12}
 ];
 ```  
+
+<br/>
+---
 
 ## options
 ```javascript
@@ -158,6 +163,9 @@ The data record that is being processed
 ###### htmlRec
 The generated html record  
   
+<br/>
+---
+
 ## Example
 ```javascript
 import {Table, FIELDTYPES } from './table.js';
