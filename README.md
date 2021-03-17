@@ -36,47 +36,47 @@ tableData.columns = [
 
 
 #### dataField
-The name of the related field in the records
+The name of the related field in the records  
 
 #### headerText
-The text to be displayed in the header column
+The text to be displayed in the header column  
 
 #### width
-The with of the column. Similarly to the bootstrap css library, a row is defined to have a width of 12, so all the widths of the columns has to add up to 12 or lower.
+The with of the column. Similarly to the bootstrap css library, a row is defined to have a width of 12, so all the widths of the columns has to add up to 12 or lower.  
 
 #### type
-Describes which datatype the cell should contain
+Describes which datatype the cell should contain  
 
 #### headerColClassName
-The classname of the header column
+The classname of the header column  
 
 #### colClassName
-The classname of the cell
+The classname of the cell  
 
 #### elementClassName
 The classname of the element  
-Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
+Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX  
 
 #### colClick
-Function to be called when the cell is clicked
+Function to be called when the cell is clicked  
 ##### Parameters
 ###### dataCol 
 The data column / this
 ###### htmlCol
 The generated html column
 ###### dataRec
-The data record
+The data record  
 
 #### elementClick
 Function to be called when the element is clicked  
-Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX
+Only used when type is either FIELDTYPES.BUTTON or FIELDTYPES.CHECKBOX  
 ##### Parameters
 ###### dataCol 
 The data column / this
 ###### htmlCol
 The generated html column
 ###### dataRec
-The data record
+The data record  
 
 #### colBeforePrint
 A function that is called before printing the cell  
@@ -86,7 +86,7 @@ The data column / this
 ###### htmlCol
 The generated html column
 ###### dataRec
-The data record
+The data record  
 
 ## records
 The records field contains the records. Only the fields defined in the columns field will be displayed
@@ -97,7 +97,7 @@ tableData.records = [
     { ProdId: 'PR000003', Qty: 6},
     { ProdId: 'PR000004', Qty: 12}
 ];
-```
+```  
 
 ## options
 ```javascript
@@ -111,16 +111,16 @@ tableData.options = {
 }
 ```
 #### headerClassName
-The classname of the header
+The classname of the header  
 
 #### recordParentClassName
-The classname of the record container
+The classname of the record container  
 
 #### recordClassName
-The classname of the records
+The classname of the records  
 
 #### headerSort
-Set true if you want to sort the table by clicking the header columns
+Set true if you want to sort the table by clicking the header columns  
 
 #### recordClick
 A function which is called when a record is clicked
@@ -128,15 +128,15 @@ A function which is called when a record is clicked
 ###### dataRec 
 The data record that was clicked
 ###### htmlRec
-The generated html record
+The generated html record  
 
 #### recordBeforePrint
 ##### Parameters
 ###### dataRec 
 The data record that is being processed
 ###### htmlRec
-The generated html record
-
+The generated html record  
+  
 ## Example
 ```javascript
 import {Table, FIELDTYPES } from './table.js';
