@@ -1,11 +1,11 @@
 # Intro
-Html and dom manipulation is pain. This library helps create simple tables in javascript. <br/>
+Html and dom manipulation is pain. This library helps create simple tables in javascript/typescript. <br/>
 You will have to write your own css to make it look decent. 
 
 # Installation
 To download the library, simply run this command in your project folder
 ```shell
-npm install --save ......
+npm install --save git+https://github.com/Eibru/TableJS.git
 ```   
 The file should now be stored in your "node_modules" folder. Copy the "Table.js" file to the project folder.
 
@@ -202,12 +202,6 @@ table.updateRecords(records);
 <br/>
 
 ## Typescript
-### Install types
-```shell
-npm install --save-dev @types/......
-```
----
-<br/>
 
 ### Example
 ```typescript
