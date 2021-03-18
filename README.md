@@ -1,5 +1,5 @@
 # Intro
-Html and dom manipulation is pain. This library helps create simple tables in javascript. <br/>
+Html and dom manipulation is pain. This library helps create simple tables in javascript/typescript. <br/>
 You will have to write your own css to make it look decent. 
 
 # Installation
